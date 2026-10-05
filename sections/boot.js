@@ -78,21 +78,27 @@ Site.register({
     let leaving = false;
 
     const lines = [
-      { text: 'CPU : Human Brain @ ∞ GHz, 2 cores detected', pause: 260 },
-      { html: 'Memory Test : <span class="mem">0</span>K', pause: 0 },
+      { text: 'CPU : Human Brain  ∞ GHz, 2 cores detected', pause: 260 },
+      { html: 'Memory Test : <span class="mem">0</span>GB', pause: 0 },
       { text: '', pause: 120 },
-      { text: dots('Detecting primary professor') + a.name, html: esc(dots('Detecting primary professor') + a.name) + '  <span class="ok">[ OK ]</span>' },
-      { text: dots('Detecting secondary professor') + b.name, html: esc(dots('Detecting secondary professor') + b.name) + '  <span class="ok">[ OK ]</span>' },
+      {
+        text: dots('Detecting professors') + a.name + ' & ' + b.name,
+        html: esc(dots('Detecting professors')) + name(a) + ' &amp; ' + name(b) + '  <span class="ok">[ OK ]</span>',
+      },
       { text: dots('Checking Stack Overflow reputation'), html: esc(dots('Checking Stack Overflow reputation')) + '<span class="ok">[ LEGENDARY ]</span>' },
       { text: dots('Loading patience.sys'), html: esc(dots('Loading patience.sys')) + '<span class="ok">[ ∞ ]</span>' },
-      { text: dots('Loading humor.dll'), html: esc(dots('Loading humor.dll')) + '<span class="ok">[ OK ]</span>' },
-      { text: dots('Mounting /dev/coffee'), html: esc(dots('Mounting /dev/coffee')) + '<span class="warn">[ LOW — refill required ]</span>' },
+      { text: dots('Calibrating humor level'), html: esc(dots('Calibrating humor level')) + '<span class="party">[ PEAK — even the compiler laughed ]</span>' },
+      {
+        text: dots('Loading surprise_exam.exe'),
+        html: esc(dots('Loading surprise_exam.exe')) + '<span class="warn">[ ARMED by </span>' + name(b, true) + '<span class="warn"> — date: RIGHT NOW ]</span>',
+      },
       { text: dots('Ignoring deadline extension requests'), html: esc(dots('Ignoring deadline extension requests')) + '<span class="ok">[ OK ]</span>' },
       { text: '', pause: 200 },
       { text: `System date: ${date}`, pause: 300 },
       { html: '<span class="party">*** TEACHER\'S DAY DETECTED ***</span>', pause: 200 },
     ];
     function esc(s) { return Site.esc(s); }
+    function name(t, short) { return `<span style="color:${t.color};font-weight:700">${esc(short ? t.short : t.name)}</span>`; }
 
     async function boot() {
       await ctx.sleep(400);
@@ -100,7 +106,6 @@ Site.register({
       // memory test count-up, the most 80s thing possible
       const mem = log.querySelector('.mem');
       for (let k = 0; k <= 640; k += 32) { mem.textContent = k; await ctx.sleep(40); }
-      mem.parentNode.innerHTML += ' OK <span class="warn">(640K ought to be enough for anybody)</span>';
       await Site.typeLines(log, lines.slice(2), ctx, { charMs: 10, lineMs: 160 });
       prompt.classList.add('show');
       done = true;
