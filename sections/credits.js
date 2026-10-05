@@ -10,21 +10,23 @@ Site.register({
     #credits .tag { font: 600 .8rem var(--mono); color: var(--blue); background: rgba(56,139,253,.12); padding: .1rem .55rem; border-radius: 6px; }
     #credits .latest { font-size: .7rem; font-weight: 700; color: var(--green); border: 1px solid var(--green); border-radius: 99px; padding: .05rem .55rem; }
     #credits .rel h4 { margin: 0; font-size: 1.05rem; }
-    #credits .rel ul { margin: .3rem 0 0; padding-left: 1.1rem; font-size: .88rem; color: #c9d1d9; }
+    #credits .rel ul { margin: .3rem 0 0; padding-left: 1.1rem; font-size: .88rem; color: #c9d1d9 }
     #credits .rel li { margin: .2rem 0; }
     #credits .k-added { color: var(--green); font-weight: 600; } #credits .k-fixed { color: var(--purple); font-weight: 600; }
     #credits .k-removed { color: var(--red); font-weight: 600; } #credits .k-known { color: var(--amber); font-weight: 600; }
     #credits .roll {
       position: relative; height: 34rem; overflow: hidden; text-align: center;
-      -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
-              mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+      background: #000; border: 0; border-radius: 0; box-shadow: none; color: #f2f2f2;
     }
+    #credits .roll::before, #credits .roll::after { content: ""; position: absolute; left: 0; right: 0; height: 22%; z-index: 1; pointer-events: none; }
+    #credits .roll::before { top: 0; background: linear-gradient(#000, transparent); }
+    #credits .roll::after { bottom: 0; background: linear-gradient(transparent, #000); }
     #credits .roll .inner { position: absolute; left: 0; right: 0; top: 100%; }
     #credits.visible .roll .inner.go { animation: roll var(--dur, 28s) linear forwards; }
     @keyframes roll { to { transform: translateY(calc(-100% - 34rem)); } }
-    #credits .roll h5 { font: 700 .75rem var(--mono); letter-spacing: .25em; color: var(--muted); margin: 2.2rem 0 .6rem; text-transform: uppercase; }
+    #credits .roll h5 { font: 700 .75rem var(--mono); letter-spacing: .25em; color: #8a8a8a; margin: 2.2rem 0 .6rem; text-transform: uppercase; }
     #credits .roll p { margin: .25rem 0; font-size: 1.05rem; }
-    #credits .roll .as { color: var(--muted); font-size: .85rem; }
+    #credits .roll .as { color: #9a9a9a; font-size: .85rem; }
     #credits .roll .big { font-size: 1.7rem; font-weight: 800; }
     #credits .roll .fin { font-size: 1.25rem; font-style: italic; margin-top: 3rem; color: #fff; }
     #credits .term { margin-top: 2.2rem; padding: 1rem 1.2rem; font: .95rem/1.7 var(--mono); }

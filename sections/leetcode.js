@@ -3,7 +3,8 @@ Site.register({
   id: 'leetcode',
   title: 'Two Professors',
   css: `
-    #leetcode .lc { display: grid; grid-template-columns: 1fr 1.05fr; gap: .6rem; }
+    #leetcode > .wrap { max-width: none; }
+    #leetcode .lc { display: grid; grid-template-columns: 1fr; gap: .6rem; width: 85vw; max-width: 85vw; margin: 0 auto; }
     #leetcode .pane { overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
     #leetcode .ed { overflow-x: auto; }
     #leetcode .tabs { display: flex; gap: 1.2rem; padding: .55rem 1rem; background: #1b1f24; border-bottom: 1px solid var(--border); font-size: .8rem; color: var(--muted); }
@@ -40,21 +41,82 @@ Site.register({
     #leetcode .hist { display: flex; align-items: flex-end; gap: 3px; height: 2.4rem; margin-top: .4rem; }
     #leetcode .hist i { flex: 1; background: #30363d; border-radius: 2px 2px 0 0; height: 0; transition: height .6s ease; }
     #leetcode .hist i.me { background: var(--green); }
-    @media (max-width: 900px) { #leetcode .lc { grid-template-columns: 1fr; } }
+    #leetcode .lede { font-size: 1rem; }
+    #leetcode .lede b { color: #ffd166; }
+    #leetcode .lede code { color: #7ee787; }
+    #leetcode .cool { margin: 1.2rem 0 .4rem; font-size: 1.15rem; font-weight: 800; letter-spacing: .02em;
+      background: linear-gradient(90deg, #ff7b72, #ffa657, #ffd166, #7ee787, #79c0ff, #d2a8ff);
+      -webkit-background-clip: text; background-clip: text; color: transparent; }
+    #leetcode .mentors { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: .6rem 0 1rem; }
+    #leetcode .mentor { background: #161b22; border: 1px solid var(--border); border-top: 3px solid var(--c); border-radius: 10px; padding: .8rem 1rem 1rem; min-width: 0; }
+    #leetcode .mentor h4 { margin: 0 0 .6rem; font-size: 1.05rem; color: var(--c); text-shadow: 0 0 14px color-mix(in srgb, var(--c) 45%, transparent); }
+    #leetcode .mentor h4 small { color: var(--muted); font-weight: 400; font-size: .75rem; margin-left: .4rem; text-shadow: none; }
+    #leetcode .rule { margin-bottom: .75rem; }
+    #leetcode .rule .t { font-weight: 700; color: var(--text); display: flex; gap: .5rem; align-items: baseline; }
+    #leetcode .rule .t i { font: 700 .72rem var(--mono); font-style: normal; color: #0d1117; background: var(--c); border-radius: 99px; padding: .05rem .5rem; flex: none; }
+    #leetcode .rule.key .t { color: #ffd166; font-size: 1.02rem; letter-spacing: .06em; text-shadow: 0 0 12px rgba(255,209,102,.5); }
+    #leetcode .snip { margin: .3rem 0 0; padding: .4rem .8rem; background: #0d1117; border-left: 3px solid var(--c); border-radius: 0 6px 6px 0; font: .78rem/1.6 var(--mono); white-space: pre; overflow-x: auto; }
+    @media (max-width: 900px) { #leetcode .lc { width: 100%; max-width: 100%; } #leetcode .mentors { grid-template-columns: 1fr; } }
   `,
 
   render(c) {
     const [a, b] = c.teachers;
     const code = [
       '<span class="kw">class</span> <span class="ty">Solution</span>:',
-      '    <span class="kw">def</span> <span class="fn">twoProfessors</span>(self, teachers: <span class="ty">List</span>[<span class="ty">str</span>], ourSuccess: <span class="ty">float</span>) -&gt; <span class="ty">List</span>[<span class="ty">int</span>]:',
-      '        seen = {}',
-      '        <span class="kw">for</span> i, t <span class="kw">in</span> <span class="fn">enumerate</span>(teachers):',
-      `            <span class="kw">if</span> t <span class="kw">in</span> (<span class="str">"${Site.esc(a.short)}"</span>, <span class="str">"${Site.esc(b.short)}"</span>):`,
-      '                seen[t] = i',
-      '        <span class="cm"># tried StackOverflow + ChatGPT first: "compiles, but wrong"</span>',
-      '        <span class="kw">return</span> <span class="fn">list</span>(seen.values())  <span class="cm"># it was always them</span>',
+      '    <span class="kw">def</span> <span class="fn">solve</span>(self, task: <span class="ty">Problem</span>, teachers: <span class="ty">List</span>[<span class="ty">Mentor</span>]) -&gt; <span class="ty">Solution</span>:',
+      '        try1 = <span class="ty">AIAgent</span>.<span class="fn">solveForMe</span>(task)',
+      '        <span class="fn">print</span>(try1)  <span class="cm"># ERROR: compiles, but wrong</span>',
+      '',
+      '        <span class="cm"># try 2: stop copy-pasting, start listening</span>',
+      '        try2 = self.<span class="fn">listenToAndThink</span>(who=teachers, problem=task)',
+      '        <span class="kw">return</span> try2  <span class="cm"># accepted. it was always them</span>',
     ];
+    const K = (t) => `<span class="kw">${t}</span>`, F = (t) => `<span class="fn">${t}</span>`, S = (t) => `<span class="str">${t}</span>`,
+      C = (t) => `<span class="cm">${t}</span>`, N = (t) => `<span class="nu">${t}</span>`;
+    const mentors = [
+      { t: b, title: 'like ' + b.short + ':', rules: [
+        ['do homework for the exam even if it is sent at 1:30 am',
+          `${K('while')} homework.pending:
+    ${F('do')}(homework)  ${C('# sent at 01:30? still done')}`],
+        ['learn extra',
+          `knowledge = syllabus + ${F('extra')}()  ${C('# beyond the slides')}`],
+        ['adapt to unexpected situations',
+          `${K('try')}:
+    ${F('plan_a')}()
+${K('except')} Surprise:
+    ${F('adapt')}()  ${C('# plan B is a mindset')}`],
+        ['you code not to fix bugs, but to create things',
+          `${K('def')} ${F('code')}(): ${K('return')} ${F('create')}(things)  ${C('# fix(bugs) is a side effect')}`],
+        ['PERSISTENCE IS THE KEY', `${K('while')} ${K('not')} success:
+    ${F('try_again')}()  ${C('# the only loop that matters')}`, true],
+      ] },
+      { t: a, title: 'like ' + a.short + ':', rules: [
+        ['discipline is the key',
+          `${K('for')} (${K('int')} day = ${N('0')}; day &lt; ${N('365')}; day++) {
+    ${F('study')}(${N('1')});  ${C('// daily beats binge')}
+}`],
+        ["don't cram. understand",
+          `${F('understand')}(topic);  ${C('// not memorize(topic)')}`],
+        ['search for opportunities',
+          `${K('for')} (Opportunity o : ${F('search')}(world)) {
+    ${F('apply')}(o);  ${C('// they rarely knock')}
+}`],
+        ['never give up',
+          `${K('while')} (${K('true')}) {
+    ${K('try')} { ${F('solve')}(); ${K('break')}; }
+    ${K('catch')} (Failure f) { ${K('continue')}; }
+}`],
+        ['ask questions',
+          `${K('if')} (!understood) {
+    ${F('ask')}(${S('"why?"')});  ${C('// the best line in any program')}
+}`],
+      ] },
+    ];
+    const mentorHtml = mentors.map((m) => `
+      <div class="mentor" style="--c:${m.t.color}">
+        <h4>${Site.esc(m.title)}</h4>
+        ${m.rules.map((r, i) => `<div class="rule${r[2] ? ' key' : ''}"><div class="t"><i>${i + 1}</i>${Site.esc(r[0])}</div><pre class="snip">${r[1]}</pre></div>`).join('')}
+      </div>`).join('');
     return `
       <p class="kicker"><b>$</b> leetcode submit 1 --lang python3</p>
       <div class="lc">
@@ -63,20 +125,15 @@ Site.register({
           <div class="desc">
             <h3>1. Two Professors</h3>
             <div class="chips"><span class="chip diff">Legendary</span><span class="chip">Array</span><span class="chip">Hash Table</span><span class="chip">Gratitude</span></div>
-            <p>Given an array <code>teachers</code> and a number <code>ourSuccess</code>, return the indices of the
+            <p class="lede">Given an array <code>teachers</code> and a number <code>ourSuccess</code>, return the indices of the
               <b>two teachers</b> that add up to <code>ourSuccess</code>.</p>
             <p>You may assume each input has exactly one solution, and you may not use the same teacher twice
               (they are already doing double shifts).</p>
-            <div class="ex"><b>Input:</b> teachers = ["${Site.esc(a.short)}", "${Site.esc(b.short)}", "StackOverflow", "ChatGPT"], ourSuccess = ∞<br>
+            <div class="ex"><b>Input:</b> teachers = ["${Site.esc(a.short)}", "${Site.esc(b.short)}", "AIAgent"], ourSuccess = ∞<br>
               <b>Output:</b> [0, 1]<br>
-              <b>Explanation:</b> teachers[0] + teachers[1] == ∞. StackOverflow and ChatGPT only got us to “compiles, but wrong”.</div>
-            <b>Constraints:</b>
-            <ul>
-              <li><code>teachers.length == 2</code> (and that is plenty)</li>
-              <li><code>1 &lt;= patience &lt;= ∞</code></li>
-              <li><code>coffee.cups &gt;= 3</code> per lecture day</li>
-              <li>Only one valid answer exists.</li>
-            </ul>
+              <b>Explanation:</b> teachers[0] + teachers[1] == ∞. The AIAgent alone only got us to “compiles, but wrong”.</div>
+            <div class="cool">Be as cool as your mentors</div>
+            <div class="mentors">${mentorHtml}</div>
             <p class="follow"><b>Follow-up:</b> Can you thank them in less than <code>O(n²)</code>? — No. Gratitude is <code>O(∞)</code>.</p>
           </div>
         </div>

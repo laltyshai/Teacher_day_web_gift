@@ -101,21 +101,21 @@ window.CONTENT = {
       notes: [
         'Added: a website, built by students, for two legendary teachers',
         'Added: gratitude (unbounded, O(∞))',
-        'Fixed: students no longer panic on IndentationError',
+        'Fixed: students no longer panic seeing Emil agai with papers',
       ],
     },
     {
-      v: 'v2025.1', title: 'Students started understanding Python',
+      v: 'v2025.9', title: 'Students started understanding Python',
       notes: ['Added: list comprehensions (used everywhere, even where they should not be)', 'Removed: fear of the terminal'],
     },
     {
-      v: 'v2024.1', title: 'First contact with students',
-      notes: ['Initial release', 'Known issue: students think HTML is a programming language'],
+      v: 'v2023.9', title: 'First contact with students',
+      notes: ['Initial release. 25 students', 'Known issue: students think HTML is a programming language'],
     },
   ],
 
   // Rolling credits — TODO: your classmates' names
-  credits: ['Student One', 'Student Two', 'Student Three', 'Student Four', 'Student Five', 'Student Six'],
+  credits: ['Isken & Altynai', 'Dinara', 'Adelia', 'the whole CS`26', 'the whole CS`25','CS`24 and CS`23' ],
 
   finalLine: 'You didn’t just teach us how to code. You taught us how to think.',
 };
