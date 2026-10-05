@@ -36,6 +36,7 @@ Site.register({
       width: 7.5rem; height: 7.5rem; image-rendering: pixelated; image-rendering: crisp-edges;
       background: #000; flex: none; box-shadow: 0 0 0 4px #000, 0 0 0 6px var(--c);
     }
+    #character canvas.photo { image-rendering: auto; }
     #character .name { font: 800 1.25rem/1.15 var(--mono); color: #fff; text-transform: uppercase; }
     #character .lvl { font: .78rem var(--mono); color: #ffd84d; margin-top: .3rem; text-transform: uppercase; }
     #character .hint { font: .62rem var(--mono); color: #777; margin-top: .4rem; }
@@ -79,10 +80,10 @@ Site.register({
             <div class="hint"></div>
           </div>
         </div>
-        ${t.rpg.stats.map(([k, v]) => `
+        ${t.rpg.stats.map(([k, raw]) => { const v = Math.max(0, Math.min(10, raw)); return `
           <div class="stat"><span>${Site.esc(k)}</span>
             <span class="blocks ${v <= 3 ? 'low' : ''}" data-v="${v}">${'<i></i>'.repeat(10)}</span>
-            <span class="num">0/10</span></div>`).join('')}
+            <span class="num">0/10</span></div>`; }).join('')}
         <div class="moves"></div>
         <div class="press">▶ PRESS TO SELECT</div>
       </div>`;
@@ -123,11 +124,13 @@ Site.register({
       }));
     };
     const drawPhoto = (cv, img) => {
-      cv.width = cv.height = 36; // low-res on purpose → chunky pixels
+      cv.width = cv.height = 240;
+      cv.classList.add('photo');
       const g = cv.getContext('2d');
       const s = Math.min(img.naturalWidth, img.naturalHeight);
       g.imageSmoothingEnabled = true;
-      g.drawImage(img, (img.naturalWidth - s) / 2, (img.naturalHeight - s) / 3, s, s, 0, 0, 36, 36);
+      g.imageSmoothingQuality = 'high';
+      g.drawImage(img, (img.naturalWidth - s) / 2, (img.naturalHeight - s) / 3, s, s, 0, 0, 240, 240);
     };
 
     const cards = [...el.querySelectorAll('.card')];

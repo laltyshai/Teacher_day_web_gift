@@ -18,14 +18,15 @@ Site.register({
     #boot .head { display: flex; justify-content: space-between; gap: 2rem; margin-bottom: 2.2vh; }
     #boot .award { display: flex; gap: .9rem; align-items: center; }
     #boot .award .logo {
-      width: 2.6rem; height: 2.6rem; border: 2px solid #ffb000; border-radius: 50%;
-      display: grid; place-items: center; color: #ffb000; font-weight: 700;
+      width: 2.6rem; height: 2.6rem; flex: none;
     }
+    #boot .award .logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
     #boot .star { text-align: right; color: #4fb6ff; line-height: 1.2; font-weight: 700; }
     #boot .star small { display: block; color: #3a8ccc; font-weight: 400; font-size: .7rem; letter-spacing: .2em; }
     #boot .log div { white-space: pre-wrap; min-height: 1.55em; }
     #boot .ok { color: #3fe05c; }
     #boot .warn { color: #ffb000; }
+    #boot .err { color: #ff4f4f; }
     #boot .hi { color: #fff; font-weight: 700; }
     #boot .party { color: #ff6ad5; font-weight: 700; }
     #boot .prompt {
@@ -51,9 +52,9 @@ Site.register({
     <div class="bios" role="button" aria-label="Boot TeacherOS">
       <div class="head">
         <div class="award">
-          <div class="logo">A</div>
-          <div><div class="hi">Award-Winning Teachers BIOS v1.986</div>
-          <div>Copyright (C) 1980s, Born-In-The-Eighties Megatrends, Inc.</div></div>
+          <div class="logo"><img src="assets/AIT_logo.png" alt="AIT logo"></div>
+          <div><div class="hi">Award-Winning Teachers BIOS v1.984</div>
+          <div>Copyright (C) 1980s, OG Millennial Code Masters.</div></div>
         </div>
         <div class="star">★ TEACHER<br>STAR<small>CERTIFIED LEGEND</small></div>
       </div>
@@ -92,7 +93,8 @@ Site.register({
         text: dots('Loading surprise_exam.exe'),
         html: esc(dots('Loading surprise_exam.exe')) + '<span class="warn">[ ARMED by </span>' + name(b, true) + '<span class="warn"> — date: RIGHT NOW ]</span>',
       },
-      { text: dots('Ignoring deadline extension requests'), html: esc(dots('Ignoring deadline extension requests')) + '<span class="ok">[ OK ]</span>' },
+      { text: dots('Request exam time extension'), html: esc(dots('Request exam time extension')) + '<span class="err">[ 403 Forbidden ]</span>' },
+      { text: dots('GET /monthly_plov_solutions'), html: esc(dots('GET /monthly_plov_solutions')) + '<span class="err">[ 420 Bad Request ]</span>' },
       { text: '', pause: 200 },
       { text: `System date: ${date}`, pause: 300 },
       { html: '<span class="party">*** TEACHER\'S DAY DETECTED ***</span>', pause: 200 },

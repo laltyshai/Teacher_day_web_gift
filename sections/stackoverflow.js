@@ -52,6 +52,17 @@ Site.register({
     #stackoverflow .ah small { font-size: .75rem; color: var(--muted); }
     #stackoverflow .answer { border-bottom: 1px solid var(--border); padding-bottom: 1.2rem; margin-bottom: 1.2rem; }
     #stackoverflow .answer.acc .text { border-left: 3px solid #5eba7d; padding-left: 1rem; }
+    #stackoverflow .replies { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; margin-bottom: 1.4rem; }
+    #stackoverflow .reply { display: flex; flex-direction: column; justify-content: space-between; gap: .7rem; background: #1b1f24; border: 1px solid var(--border); border-radius: 8px; padding: .8rem .9rem; }
+    #stackoverflow .reply .text { font-size: .85rem; line-height: 1.5; }
+    #stackoverflow .rfoot { display: flex; justify-content: space-between; align-items: center; gap: .4rem; font-size: .72rem; color: var(--muted); }
+    #stackoverflow .ruser { display: flex; align-items: center; gap: .4rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+    #stackoverflow .ruser .av { width: 1.5rem; height: 1.5rem; font-size: .6rem; flex: none; }
+    #stackoverflow .like { background: transparent; border: 1px solid #444c56; border-radius: 999px; color: #9fa6ad; padding: .2rem .55rem; font: 600 .75rem var(--mono); cursor: pointer; white-space: nowrap; transition: background .2s, color .2s; }
+    #stackoverflow .like:hover { background: #3d2a1a; }
+    #stackoverflow .like.on { background: var(--so); border-color: var(--so); color: #fff; }
+    @media (max-width: 1000px) { #stackoverflow .replies { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { #stackoverflow .replies { grid-template-columns: 1fr; } }
     #stackoverflow .deleted { background: rgba(248,81,73,.08); border: 1px solid rgba(248,81,73,.3); border-radius: 6px; padding: .8rem 1rem; font-size: .85rem; color: #e1a1a0; }
     #stackoverflow .deleted s { color: #8b949e; }
     #stackoverflow .toast {
@@ -80,7 +91,7 @@ Site.register({
       <div class="so panel">
         <div class="top">
           <span class="logo"><span class="stack"><i></i><i></i><i></i><i></i></span>stack<b>overflow</b></span>
-          <span class="search">🔍 how to thank professor without it being marked as duplicate</span>
+          <span class="search">🔍 how to thank professor without it getting too emotional</span>
           <span class="me"><b>${me}</b> · <span class="rep">1</span> rep</span>
         </div>
         <div class="body">
@@ -92,7 +103,7 @@ Site.register({
             — reason: <i>“too emotional for a technical Q&amp;A site”</i>.</div>
 
           <div class="post">
-            ${votes(-2)}
+            ${votes(999999)}
             <div>
               <div class="text">
                 <p>We are a group of students who survived Java, Python, statistics and discrete math thanks to two professors.
@@ -103,30 +114,20 @@ Site.register({
                   We also tried copying last year’s card, but it was flagged as a duplicate.</p>
                 <p>What is the best practice for thanking two legendary professors? <del title="removed: noise">Thanks in advance!!!</del></p>
               </div>
-              <div class="tags"><span>gratitude</span><span>teachers-day</span><span>python</span><span>java</span><span>discrete-math</span><span>statistics</span></div>
-              <div class="usercard"><div>asked today
-                <div class="u">${av('S', '#5a7d9a')}<div><a>${me}</a><br>1 · ●0 ●0 ●2</div></div></div></div>
-            </div>
+              <div class="tags"><span>gratitude</span><span>teachers-day</span><span>python</span><span>java</span><span>discrete-math</span><span>statistics</span></div>            </div>
           </div>
 
-          <div class="comments">
-            <div><span class="score">47</span>Possible duplicate of <a>Teacher’s Day 2025</a> – <a>senior_student</a> 3 hours ago</div>
-            <div><span class="score">31</span>${Site.esc(b.says.comment)} – <a>${Site.esc(b.handle)}</a> 2 hours ago</div>
-            <div><span class="score">29</span>${Site.esc(a.says.comment)} – <a>${Site.esc(a.handle)}</a> 2 hours ago</div>
-            <div><span class="score">12</span>Works on my machine. – <a>group_leader</a> 1 hour ago</div>
-          </div>
+          <div class="ah"><span>${c.replies.length} Replies</span><small>Sorted by: Highest score (default)</small></div>
 
-          <div class="ah"><span>2 Answers</span><small>Sorted by: Highest score (default)</small></div>
-
-          <div class="answer acc">
-            <div class="post">
-              ${votes(2026, '<div class="accepted" title="Accepted answer">✔</div>')}
-              <div>
-                <div class="text">${c.thankYou.map((p) => `<p>${Site.esc(p)}</p>`).join('')}</div>
-                <div class="usercard"><div>answered just now
-                  <div class="u">${av('S', '#5a7d9a')}<div><a>${me}</a><br><span class="rep">1</span> · ●0 ●0 ●2</div></div></div></div>
-              </div>
-            </div>
+          <div class="replies">
+            ${c.replies.map((r, i) => `
+              <div class="reply">
+                <div class="text">${Site.esc(r.text)}</div>
+                <div class="rfoot">
+                  <span class="ruser">${av(r.user.slice(-2), ['#5a7d9a', '#9a5a7d', '#5a9a6e', '#9a8a5a'][i % 4])}${Site.esc(r.user)}</span>
+                  <button class="like" type="button" aria-label="Upvote reply"><span class="arr">▲</span> <span class="lc" data-n="${r.likes}">${r.likes.toLocaleString('en-US')}</span></button>
+                </div>
+              </div>`).join('')}
           </div>
 
           <div class="answer">
@@ -148,6 +149,25 @@ Site.register({
     let ups = 0;
     const repEls = el.querySelectorAll('.rep');
     const toast = el.querySelector('.toast');
+
+    el.querySelectorAll('.like').forEach((btn) => {
+      const lc = btn.querySelector('.lc');
+      let liked = false;
+      btn.addEventListener('click', () => {
+        liked = !liked;
+        lc.textContent = (+lc.dataset.n + (liked ? 1 : 0)).toLocaleString('en-US');
+        btn.classList.toggle('on', liked);
+        rep += liked ? 10 : -10;
+        repEls.forEach((r) => (r.textContent = rep.toLocaleString('en-US')));
+        if (liked) {
+          Site.floatText(btn, '+10', '#f48024');
+          if (++ups === 5) {
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3200);
+          }
+        }
+      });
+    });
 
     el.querySelectorAll('.votes').forEach((v) => {
       const count = v.querySelector('.count');
