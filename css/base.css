@@ -1,0 +1,226 @@
+/* TeacherOS — shared theme. Section-specific styles live inside each sections/*.js file. */
+
+:root {
+  --bg: #0d1117;
+  --panel: #161b22;
+  --panel-2: #1c2128;
+  --border: #30363d;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --green: #3fb950;
+  --blue: #58a6ff;
+  --purple: #a371f7;
+  --amber: #d29922;
+  --red: #f85149;
+  --pink: #f778ba;
+  --orange: #f48024;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  /* projector-friendly: ~21px on 1920 wide, ~17px on 1280 */
+  font-size: clamp(15px, 0.55vw + 10px, 22px);
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- sections ---------- */
+.sec {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1.25rem;
+  position: relative;
+}
+.wrap { width: 100%; max-width: 1200px; margin: 0 auto; }
+
+.sec > .wrap {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.sec.visible > .wrap { opacity: 1; transform: none; }
+
+.kicker {
+  font-family: var(--mono);
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.6rem;
+}
+.kicker b { color: var(--green); font-weight: 600; }
+
+h2.big {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.2;
+  margin: 0 0 1.4rem;
+}
+
+code, .mono { font-family: var(--mono); }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: 6px;
+  padding: 0.5em 1.1em;
+  background: #21262d;
+  color: var(--text);
+  transition: transform 0.1s, filter 0.2s, opacity 0.2s;
+}
+.btn:hover { filter: brightness(1.25); }
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; filter: none; }
+.btn.green { background: #238636; color: #fff; }
+.btn.purple { background: #8957e5; color: #fff; }
+
+/* ---------- small shared bits ---------- */
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pop {
+  0% { transform: scale(0.4); opacity: 0; }
+  70% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-46px); opacity: 0; }
+}
+
+.cursor::after,
+.typing::after {
+  content: "▋";
+  margin-left: 2px;
+  animation: blink 1s steps(1) infinite;
+}
+
+.spinner {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  vertical-align: -0.1em;
+}
+
+.float-plus {
+  position: absolute;
+  font: 700 0.9rem var(--mono);
+  color: var(--green);
+  pointer-events: none;
+  animation: floatUp 0.9s ease-out forwards;
+}
+
+/* ---------- photo helper (Site.photo) ---------- */
+.photo { position: relative; overflow: hidden; background: #0b0f14; }
+.photo img, .photo video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo .missing-label { display: none; }
+.photo.missing img, .photo.missing video { display: none; }
+.photo.missing {
+  border: 2px dashed #3d444d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo.missing .missing-label {
+  display: block;
+  font: 0.7rem/1.4 var(--mono);
+  color: var(--muted);
+  text-align: center;
+  padding: 0.5rem;
+}
+
+/* ---------- chrome: progress bar, nav dots, confetti ---------- */
+#progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--green), var(--blue), var(--purple));
+  z-index: 60;
+}
+
+#dots {
+  position: fixed;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 50;
+}
+#dots button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--muted);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+#dots button.active {
+  background: var(--green);
+  border-color: var(--green);
+  box-shadow: 0 0 10px var(--green);
+}
+#dots button span {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font: 0.72rem var(--mono);
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+#dots button:hover span { opacity: 1; }
+
+#confetti {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 100;
+}
+
+@media (max-width: 640px) {
+  #dots { right: 6px; gap: 9px; }
+  #dots button { width: 9px; height: 9px; }
+  .sec { padding: 4rem 1rem; }
+}

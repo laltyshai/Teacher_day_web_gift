@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TeacherOS — Happy Teacher's Day</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+  <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+  <div id="progress"></div>
+  <main id="app"></main>
+  <nav id="dots" aria-label="Sections"></nav>
+  <canvas id="confetti"></canvas>
+
+  <script src="js/content.js"></script>
+  <script src="js/core.js"></script>
+
+  <!-- ===== SECTIONS =====
+       Line order = page order.
+       Add a section: create sections/<id>.js and add one line here.
+       Remove: delete or comment out its line. Reorder: move lines. -->
+  <script src="sections/boot.js"></script>
+  <script src="sections/dashboard.js"></script>
+  <script src="sections/character.js"></script>
+  <script src="sections/stackoverflow.js"></script>
+  <script src="sections/leetcode.js"></script>
+  <script src="sections/pullrequest.js"></script>
+  <script src="sections/memory.js"></script>
+  <script src="sections/credits.js"></script>
+</body>
+</html>
