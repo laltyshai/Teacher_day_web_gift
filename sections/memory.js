@@ -50,6 +50,8 @@ Site.register({
     #memory .pol .cap { font: .78rem/1.25 "Marker Felt", "Chalkboard SE", "Comic Sans MS", cursive; color: #333; padding: .4rem .1rem .5rem; min-height: 2.6rem; }
     #memory .pol.vid .photo::after { content: "▶"; position: absolute; inset: 0; display: grid; place-items: center; font-size: 2rem; color: #fff; text-shadow: 0 2px 8px #000; pointer-events: none; }
     #memory .col { display: flex; flex-direction: column; gap: 1rem; }
+    #memory .reels .in { padding: .9rem; background: #fff; display: grid; grid-template-columns: repeat(2, minmax(0, 15rem)); justify-content: center; gap: 1rem 1.4rem; border: 2px solid; border-color: #808080 #fff #fff #808080; margin: .3rem; }
+    #memory .reels .pol .photo { aspect-ratio: 9 / 16; }
     #memory .note .in { background: #fff; margin: .3rem; padding: .7rem .8rem; font: .82rem/1.55 "Lucida Console", Monaco, monospace; white-space: pre-wrap; border: 2px solid; border-color: #808080 #fff #fff #808080; }
     #memory .menu { font-size: .75rem; padding: .15rem .5rem; display: flex; gap: .9rem; }
     #memory .stickies { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
@@ -98,6 +100,7 @@ Site.register({
           </div>
 
           <div class="shown" hidden>
+            <div class="col">
             <div class="win gal pop">
               <div class="tb">📁 C:\\Memories\\${Site.esc(c.group)}<span class="x"><i>_</i><i>□</i><i>×</i></span></div>
               <div class="in">${c.memories.map((m, i) => `
@@ -106,6 +109,16 @@ Site.register({
                   <div class="cap">${Site.esc(m.caption)}</div>
                 </button>`).join('')}
               </div>
+            </div>
+            <div class="win reels pop">
+              <div class="tb">🎞️ the best reels<span class="x"><i>_</i><i>□</i><i>×</i></span></div>
+              <div class="in">${c.reels.map((m, i) => `
+                <button class="pol vid" type="button" data-reel="${i}" style="--r:${rot()}">
+                  ${Site.photo(m.src, m.caption)}
+                  <div class="cap">${Site.esc(m.caption)}</div>
+                </button>`).join('')}
+              </div>
+            </div>
             </div>
             <div class="col">
               <div class="win note pop">
@@ -204,7 +217,8 @@ Site.register({
       lb.classList.add('open');
     };
     const close = () => { lb.classList.remove('open'); el.querySelector('.lbimg').innerHTML = ''; };
-    el.querySelectorAll('.pol').forEach((p) => p.addEventListener('click', () => open(c.memories[+p.dataset.i])));
+    el.querySelectorAll('.pol').forEach((p) => p.addEventListener('click', () =>
+      open(p.dataset.reel !== undefined ? c.reels[+p.dataset.reel] : c.memories[+p.dataset.i])));
     lb.addEventListener('click', (e) => { if (e.target.tagName !== 'VIDEO') close(); });
     ctx.onKey = (e) => {
       if (lb.classList.contains('open') && (e.key === 'Escape' || e.key === ' ')) { close(); return true; }
