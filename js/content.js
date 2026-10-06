@@ -87,12 +87,10 @@ window.CONTENT = {
 
   // Photos / videos in MEMORY.exe — TODO: drop files and update captions
   memories: [
-    { src: 'assets/photos/first_exam.mp4', caption: 'First exam' },
-    { src: 'assets/java_quiz.jpg', caption: 'The Java quiz' },
-    { src: 'assets/photos/m_outfits.jpg', caption: 'Outfits of the semester' },
-    { src: 'assets/photos/group_photo.jpg', caption: 'Group photo' },
-    { src: 'assets/photos/memory5.jpg', caption: 'The famous whiteboard' },
-    { src: 'assets/photos/memory6.mp4', caption: 'Video: our best moment' },
+    { src: 'assets/photos/first_exam.webm', caption: 'First exam' },
+    { src: 'assets/java_quiz.jpg', caption: 'Weekly Java quiz' },
+    { src: 'assets/photos/m_outfits.jpg', caption: 'Many outfits of the Vogue' },
+    { src: 'assets/photos/group_photo.jpg', caption: 'AIT Solutions ' },
   ],
 
   changelog: [

@@ -41,11 +41,12 @@ Site.register({
     #memory .shown .pop { opacity: 0; transform: scale(.85); }
     #memory .shown .pop.on { animation: pop .45s ease-out forwards; }
     #memory .pol video { pointer-events: none; }
-    #memory .gal .in { padding: .9rem; background: #fff; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem .9rem; border: 2px solid; border-color: #808080 #fff #fff #808080; margin: .3rem; }
-    #memory .pol { background: #fafafa; padding: .45rem .45rem 0; box-shadow: 0 4px 12px rgba(0,0,0,.25); transform: rotate(var(--r)); cursor: zoom-in; transition: transform .25s; border: 0; font: inherit; color: inherit; text-align: center; }
+    #memory .gal .in { padding: .9rem; background: #fff; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem .9rem; border: 2px solid; border-color: #808080 #fff #fff #808080; margin: .3rem; }
+    #memory .pol { min-width: 0; background: #fafafa; padding: .45rem .45rem 0; box-shadow: 0 4px 12px rgba(0,0,0,.25); transform: rotate(var(--r)); cursor: zoom-in; transition: transform .25s; border: 0; font: inherit; color: inherit; text-align: center; }
     #memory .pol:hover { transform: rotate(0) scale(1.05); z-index: 2; position: relative; }
     #memory .pol .photo { aspect-ratio: 4 / 3; }
     #memory .pol .photo video { pointer-events: none; }
+    #memory .pol video::-webkit-media-controls { display: none !important; }
     #memory .pol .cap { font: .78rem/1.25 "Marker Felt", "Chalkboard SE", "Comic Sans MS", cursive; color: #333; padding: .4rem .1rem .5rem; min-height: 2.6rem; }
     #memory .pol.vid .photo::after { content: "▶"; position: absolute; inset: 0; display: grid; place-items: center; font-size: 2rem; color: #fff; text-shadow: 0 2px 8px #000; pointer-events: none; }
     #memory .col { display: flex; flex-direction: column; gap: 1rem; }
