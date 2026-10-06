@@ -40,11 +40,11 @@ Site.register({
     #character .name { font: 800 1.25rem/1.15 var(--mono); color: #fff; text-transform: uppercase; }
     #character .lvl { font: .78rem var(--mono); color: #ffd84d; margin-top: .3rem; text-transform: uppercase; }
     #character .hint { font: .62rem var(--mono); color: #777; margin-top: .4rem; }
-    #character .stat { display: grid; grid-template-columns: 8.5rem 1fr 2.6rem; align-items: center; gap: .6rem; font: .78rem var(--mono); color: #ddd; text-transform: uppercase; margin: .32rem 0; }
+    #character .stat { display: grid; grid-template-columns: 8.5rem 1fr 3.2rem; align-items: center; gap: .6rem; font: .78rem var(--mono); color: #ddd; text-transform: uppercase; margin: .32rem 0; }
     #character .blocks { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; }
     #character .blocks i { height: .85rem; background: #26264a; }
-    #character .blocks i.on { background: var(--c); box-shadow: inset 0 -3px 0 rgba(0,0,0,.35); }
-    #character .blocks.low i.on { background: #ff5a5a; }
+    #character .blocks i.on { background: var(--bar); box-shadow: inset 0 -3px 0 rgba(0,0,0,.35); }
+    #character .blocks.over i.on { box-shadow: inset 0 -3px 0 rgba(0,0,0,.35), 0 0 6px var(--bar); }
     #character .num { text-align: right; color: #aaa; }
     #character .moves { margin-top: .9rem; min-height: 6.2rem; font: .82rem/1.65 var(--mono); color: #cfcfff; }
     #character .moves .ult { color: #ffd84d; font-weight: 700; }
@@ -63,7 +63,7 @@ Site.register({
     #character .coop.show { transform: scale(1); }
     @media (max-width: 900px) {
       #character .row { grid-template-columns: 1fr; }
-      #character .stat { grid-template-columns: 7rem 1fr 2.4rem; }
+      #character .stat { grid-template-columns: 7rem 1fr 3rem; }
     }
   `,
 
@@ -80,9 +80,13 @@ Site.register({
             <div class="hint"></div>
           </div>
         </div>
-        ${t.rpg.stats.map(([k, raw]) => { const v = Math.max(0, Math.min(10, raw)); return `
+        ${t.rpg.stats.map(([k, raw]) => {
+          const v = Math.max(0, Math.min(10, raw));
+          // 1 = red → 9-10 = green; anything over 10 breaks the scale and goes purple
+          const bar = raw > 10 ? '#a371f7' : `hsl(${Math.round(Math.max(0, Math.min(1, (v - 1) / 8)) * 120)}, 75%, 50%)`;
+          return `
           <div class="stat"><span>${Site.esc(k)}</span>
-            <span class="blocks ${v <= 3 ? 'low' : ''}" data-v="${v}">${'<i></i>'.repeat(10)}</span>
+            <span class="blocks ${raw > 10 ? 'over' : ''}" data-v="${v}" data-raw="${raw}" style="--bar: ${bar}">${'<i></i>'.repeat(10)}</span>
             <span class="num">0/10</span></div>`; }).join('')}
         <div class="moves"></div>
         <div class="press">▶ PRESS TO SELECT</div>
@@ -160,6 +164,7 @@ Site.register({
           num.textContent = `${k + 1}/10`;
           await ctx.sleep(70);
         }
+        if (+bar.dataset.raw > v) num.textContent = `${bar.dataset.raw}/10`;
       }));
       const moves = card.querySelector('.moves');
       await Site.typeLines(moves, [

@@ -21,8 +21,6 @@ window.CONTENT = {
       color: '#a371f7',
       photo: 'assets/photos/m_pfp.jpg',       // TODO: drop a portrait with this name
       subjects: ['Statistics', 'Discrete Math', 'Python'], // TODO: check which courses
-      teachingSince: '2018-09-01',              // TODO: drives the live "uptime" clock
-      dashboard: { students: 1200, bugsFixed: 9999, soRep: 31337, jokesPerLecture: 7, coffee: 92 }, // TODO: tweak numbers
       rpg: {
         cls: 'Statistics Sorceress',            // TODO
         stats: [['Patience', 10], ['Debugging', 99], ['Humor', 99], ['Gambling', 5], ['Deadline mercy', 0]],
@@ -45,8 +43,6 @@ window.CONTENT = {
       color: '#58a6ff',
       photo: 'assets/photos/e_pfp.jpg',          // TODO: drop a portrait with this name
       subjects: ['Java', 'Software Engineering', 'Computer Science'], // TODO: check which courses
-      teachingSince: '2019-09-01',              // TODO
-      dashboard: { students: 1100, bugsFixed: 9999, soRep: 42424, jokesPerLecture: 9, coffee: 97 }, // TODO
       rpg: {
         cls: 'Java Paladin',                    // TODO
         stats: [['Patience', 2], ['Debugging', 99], ['Humor', 99], ['Gambling', 10], ['Deadline mercy', 7]],
