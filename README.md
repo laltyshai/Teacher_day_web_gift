@@ -1,6 +1,34 @@
 # Teacher_day_web_gift
 A website for our dearest teachers Emil agai and Munara eje for Teacher's day
 
+## Screenshots
+
+The page is a scroll through seven "OS-style" screens, one per section.
+
+### 1. BIOS boot
+![BIOS boot](docs/screenshots/01-boot.jpg)
+
+### 2. Choose your professor
+![Character select](docs/screenshots/02-character.jpg)
+
+### 3. Stack Overflow
+![Stack Overflow](docs/screenshots/03-stackoverflow.jpg)
+
+### 4. LeetCode: Two Professors
+![LeetCode](docs/screenshots/04-leetcode.jpg)
+
+### 5. Pull request
+![Pull request](docs/screenshots/05-pullrequest.jpg)
+
+### 6. MEMORY.exe
+Photos, "the best reels", quotes and sticky notes. Tap any photo, reel or note to open it full screen.
+
+![Copying memories](docs/screenshots/06a-memory-copying.jpg)
+![Memory desktop](docs/screenshots/06-memory.jpg)
+
+### 7. Credits
+![Credits](docs/screenshots/07-credits.jpg)
+
 ## How to run
 
 No internet, no installs, no build. Pick one:
