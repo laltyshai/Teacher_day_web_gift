@@ -33,7 +33,7 @@ window.CONTENT = {
         review: 'Approved. Statistically significant improvement (p < 0.05).',
         comment: 'Have you tried defining the problem before solving it?',
       },
-      quote: '« favourite quote of Ms. Munara goes here »', // TODO
+      quote: '«Guys, you can do everything yourself if you study »', // TODO
     },
     {
       id: 'emil',
@@ -55,7 +55,7 @@ window.CONTENT = {
         review: 'LGTM 🚀  …you forgot a semicolon. Just kidding, it’s Python.',
         comment: 'Did you read the error message? The whole thing?',
       },
-      quote: '« favourite quote of Emil agai goes here »', // TODO
+      quote: '« Persistence is the key »', // TODO
     },
   ],
 
@@ -69,7 +69,7 @@ window.CONTENT = {
     { user: 'student_06', likes: 2147, text: 'They always ask “do you have any questions?” and are actually ready to explain it all over again, just for us 🥹' },
     { user: 'student_07', likes: 1288, text: 'Bug in my code for 3 hours. Munara eje found it in 3 seconds. Respect. 🐛' },
     { user: 'student_08', likes: 1764, text: 'Emil agai said “it is easy”. It was not easy. But somehow we did it 😭' },
-    { user: 'student_09', likes: 1431, text: 'Best teachers I know: they make 9 a.m. lectures worth waking up for ☕' },
+    { user: 'student_09', likes: 1431, text: 'Best teachers I know: studying in co-working for exams during the weekends is truly worth it ☕' },
     { user: 'student_10', likes: 1105, text: 'Thanks to them I read the stack trace first and panic second 🧠' },
     { user: 'student_11', likes: 1690, text: '"I love Ms.Munara`s lessons. Her classes are structured amazingly! ALways a syllabus, psemester plan or presentation!' },
     { user: 'student_12', likes: 2500, text: 'Thank you for believing our code would compile one day. It does now. Mostly. 🚀' },
