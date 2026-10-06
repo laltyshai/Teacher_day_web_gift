@@ -23,7 +23,7 @@ window.CONTENT = {
       subjects: ['Statistics', 'Discrete Math', 'Python'], // TODO: check which courses
       rpg: {
         cls: 'Statistics Sorceress',            // TODO
-        stats: [['Patience', 10], ['Debugging', 99], ['Humor', 99], ['Gambling', 5], ['Deadline mercy', 0]],
+        stats: [['Patience', 10],['Lessons` dtrucutre', 99], ['Debugging', 99], ['Humor', 99], ['Gambling', 2], ['Deadline mercy', 1]],
         moves: ['p-value Punch (p < 0.05)', 'Proof by Induction Combo', 'Standard Deviation Dodge'],
         ultimate: 'Curve Deployment',
       },
@@ -45,7 +45,7 @@ window.CONTENT = {
       subjects: ['Java', 'Software Engineering', 'Computer Science'], // TODO: check which courses
       rpg: {
         cls: 'Java Paladin',                    // TODO
-        stats: [['Patience', 2], ['Debugging', 99], ['Humor', 99], ['Gambling', 10], ['Deadline mercy', 7]],
+        stats: [['Patience', 2], ['Improvisation', 10], ['Debugging', 99], ['Humor', 99], ['Gambling', 10], ['Deadline mercy', 7]],
         moves: ['NullPointer Parry', 'Recursive Refactor', 'Garbage Collector Sweep'],
         ultimate: 'Office Hours Heal',
       },
