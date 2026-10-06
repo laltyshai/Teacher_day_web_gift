@@ -75,20 +75,22 @@ window.CONTENT = {
     { user: 'student_12', likes: 2500, text: 'Thank you for believing our code would compile one day. It does now. Mostly. 🚀' },
   ],
 
-  // Sticky notes in MEMORY.exe — TODO: paste real messages from classmates
+  // Sticky notes in MEMORY.exe — screenshots of funny messages (image only, no text)
   messages: [
-    { from: 'Student 1', text: 'Thank you for every “one more example” when nobody got it the first time.' },
-    { from: 'Student 2', text: 'I finally understand recursion. To understand it, see: this note.' },
-    { from: 'Student 3', text: 'Office hours > Stack Overflow. Faster answers, better jokes.' },
-    { from: 'Student 4', text: 'You made 9 a.m. lectures worth waking up for.' },
+    { img: 'assets/photos/funnote.jpg' },
+    { img: 'assets/photos/funnote1.jpg' },
+    { img: 'assets/photos/funnote3.jpg' },
+    { img: 'assets/photos/funnote4.jpg' },
+    { img: 'assets/photos/funnote5.jpg' },
+    { img: 'assets/java_quiz.jpg' },
   ],
 
   // Photos / videos in MEMORY.exe — TODO: drop files and update captions
   memories: [
-    { src: 'assets/photos/memory1.jpg', caption: 'First lecture — nobody knew what a pointer was' },
-    { src: 'assets/photos/memory2.jpg', caption: 'Live coding: it compiled on the first try (it did not)' },
-    { src: 'assets/photos/memory3.jpg', caption: 'Exam week, coffee level: critical' },
-    { src: 'assets/photos/memory4.jpg', caption: 'Group photo' },
+    { src: 'assets/photos/first_exam.mp4', caption: 'First exam' },
+    { src: 'assets/java_quiz.jpg', caption: 'The Java quiz' },
+    { src: 'assets/photos/m_outfits.jpg', caption: 'Outfits of the semester' },
+    { src: 'assets/photos/group_photo.jpg', caption: 'Group photo' },
     { src: 'assets/photos/memory5.jpg', caption: 'The famous whiteboard' },
     { src: 'assets/photos/memory6.mp4', caption: 'Video: our best moment' },
   ],
