@@ -55,7 +55,8 @@ Site.register({
     #memory .note .in { background: #fff; margin: .3rem; padding: .7rem .8rem; font: .82rem/1.55 "Lucida Console", Monaco, monospace; white-space: pre-wrap; border: 2px solid; border-color: #808080 #fff #fff #808080; }
     #memory .menu { font-size: .75rem; padding: .15rem .5rem; display: flex; gap: .9rem; }
     #memory .stickies { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
-    #memory .sticky { padding: .7rem .75rem .6rem; font: .82rem/1.35 "Marker Felt", "Chalkboard SE", "Comic Sans MS", cursive; color: #2b2b2b; box-shadow: 0 6px 14px rgba(0,0,0,.3); transform: rotate(var(--r)); }
+    #memory .sticky { padding: .7rem .75rem .6rem; font: .82rem/1.35 "Marker Felt", "Chalkboard SE", "Comic Sans MS", cursive; color: #2b2b2b; box-shadow: 0 6px 14px rgba(0,0,0,.3); transform: rotate(var(--r)); cursor: zoom-in; transition: filter .2s; }
+    #memory .sticky:hover { filter: brightness(1.06) drop-shadow(0 4px 8px rgba(0,0,0,.25)); }
     #memory .sticky img { display: block; width: 100%; height: auto; }
     #memory .sticky b { display: block; margin-top: .4rem; font-size: .72rem; opacity: .7; }
     #memory .task { height: 2.4rem; background: #c0c0c0; border-top: 2px solid #fff; display: flex; align-items: center; gap: .4rem; padding: 0 .3rem; position: relative; z-index: 6; }
@@ -127,7 +128,7 @@ Site.register({
                 <div class="in">${Site.esc(quotes)}</div>
               </div>
               <div class="stickies">${c.messages.map((m, i) => `
-                <div class="sticky pop" style="--r:${rot()};background:${colors[i % colors.length]}"><img src="${Site.esc(m.img)}" alt=""></div>`).join('')}
+                <div class="sticky pop" role="button" tabindex="0" data-note="${i}" style="--r:${rot()};background:${colors[i % colors.length]}"><img src="${Site.esc(m.img)}" alt=""></div>`).join('')}
               </div>
             </div>
           </div>
@@ -219,6 +220,11 @@ Site.register({
     const close = () => { lb.classList.remove('open'); el.querySelector('.lbimg').innerHTML = ''; };
     el.querySelectorAll('.pol').forEach((p) => p.addEventListener('click', () =>
       open(p.dataset.reel !== undefined ? c.reels[+p.dataset.reel] : c.memories[+p.dataset.i])));
+    el.querySelectorAll('.sticky').forEach((n) => {
+      const show = () => open({ src: c.messages[+n.dataset.note].img, caption: '' });
+      n.addEventListener('click', show);
+      n.addEventListener('keydown', (e) => { if (e.key === 'Enter') show(); });
+    });
     lb.addEventListener('click', (e) => { if (e.target.tagName !== 'VIDEO') close(); });
     ctx.onKey = (e) => {
       if (lb.classList.contains('open') && (e.key === 'Escape' || e.key === ' ')) { close(); return true; }
