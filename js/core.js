@@ -107,7 +107,7 @@
     const media = !src
       ? ''
       : isVideo
-        ? `<video src="${esc(src)}" controls muted playsinline preload="metadata" onerror="${fail}"></video>`
+        ? `<video src="${esc(src)}#t=0.1" controls muted playsinline preload="metadata" onerror="${fail}"></video>`
         : `<img src="${esc(src)}" alt="${esc(label)}" loading="lazy" onerror="${fail}">`;
     return `<div class="photo ${src ? '' : 'missing'} ${cls}">${media}` +
       `<span class="missing-label">📷 drop file:<br>${esc(src || 'assets/photos/…')}</span></div>`;

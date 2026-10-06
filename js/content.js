@@ -19,22 +19,21 @@ window.CONTENT = {
       handle: '@munara',
       initials: 'MT',
       color: '#a371f7',
-      photo: 'assets/photos/m_pfp.jpg',       // TODO: drop a portrait with this name
-      subjects: ['Statistics', 'Discrete Math', 'Python'], // TODO: check which courses
-      teachingSince: '2018-09-01',              // TODO: drives the live "uptime" clock
-      dashboard: { students: 1200, bugsFixed: 9999, soRep: 31337, jokesPerLecture: 7, coffee: 92 }, // TODO: tweak numbers
+      photo: 'assets/photos/m_pfp.jpg',      
+      
+      subjects: ['Statistics', 'Discrete Math', 'Java',  'Computer Science', 'Research'], // TODO: check which courses
       rpg: {
-        cls: 'Statistics Sorceress',            // TODO
-        stats: [['Patience', 10], ['Debugging', 99], ['Humor', 99], ['Gambling', 5], ['Deadline mercy', 0]],
-        moves: ['p-value Punch (p < 0.05)', 'Proof by Induction Combo', 'Standard Deviation Dodge'],
-        ultimate: 'Curve Deployment',
+        cls: 'Java Paladin',       
+        stats: [['Patience', 10],['Lessons` strucutre', 99], ['Debugging', 99], ['Humor', 67], ['Lab difficuly', 9], ['Deadline mercy', 1]],
+        moves: ['Cache miss debuff', 'Recursive Refactor', 'Standard Deviation Dodge', 'Kernel proccess freeze'],
+        ultimate: 'Zero-latency CPU acceleration',
       },
       // short lines shown as comments/reviews "by" this teacher — TODO: replace with their real catchphrases
       says: {
         review: 'Approved. Statistically significant improvement (p < 0.05).',
         comment: 'Have you tried defining the problem before solving it?',
       },
-      quote: '« favourite quote of Ms. Munara goes here »', // TODO
+      quote: '«Guys, you can do everything yourself if you study »', // TODO
     },
     {
       id: 'emil',
@@ -43,21 +42,20 @@ window.CONTENT = {
       handle: '@emil',
       initials: 'EB',
       color: '#58a6ff',
-      photo: 'assets/photos/e_pfp.jpg',          // TODO: drop a portrait with this name
-      subjects: ['Java', 'Software Engineering', 'Computer Science'], // TODO: check which courses
-      teachingSince: '2019-09-01',              // TODO
-      dashboard: { students: 1100, bugsFixed: 9999, soRep: 42424, jokesPerLecture: 9, coffee: 97 }, // TODO
+      photo: 'assets/photos/e_pfp.jpg',          
+      subjects: [ 'AIT Solutions', 'Data Structures', 'Algorithms', 'Python', 'Software dev Patterns',], // TODO: check which courses
+
       rpg: {
-        cls: 'Java Paladin',                    // TODO
-        stats: [['Patience', 2], ['Debugging', 99], ['Humor', 99], ['Gambling', 10], ['Deadline mercy', 7]],
-        moves: ['NullPointer Parry', 'Recursive Refactor', 'Garbage Collector Sweep'],
-        ultimate: 'Office Hours Heal',
+        cls: 'Algorithm Alchemist',                    // TODO
+        stats: [['Patience', 2], ['Improvisation', 10], ['Debugging', 99], ['Humor', 99], ['Gambling', 10], ['Deadline mercy', 7]],
+        moves: ['NullPointer Parry', 'BigTech friends summoning', 'Garbage Collector Sweep', "Infinite Loop trap"],
+        ultimate: 'Sudden exam',
       },
       says: {
         review: 'LGTM 🚀  …you forgot a semicolon. Just kidding, it’s Python.',
         comment: 'Did you read the error message? The whole thing?',
       },
-      quote: '« favourite quote of Emil agai goes here »', // TODO
+      quote: '« Persistence is the key »', // TODO
     },
   ],
 
@@ -71,28 +69,28 @@ window.CONTENT = {
     { user: 'student_06', likes: 2147, text: 'They always ask “do you have any questions?” and are actually ready to explain it all over again, just for us 🥹' },
     { user: 'student_07', likes: 1288, text: 'Bug in my code for 3 hours. Munara eje found it in 3 seconds. Respect. 🐛' },
     { user: 'student_08', likes: 1764, text: 'Emil agai said “it is easy”. It was not easy. But somehow we did it 😭' },
-    { user: 'student_09', likes: 1431, text: 'Best teachers I know: they make 9 a.m. lectures worth waking up for ☕' },
+    { user: 'student_09', likes: 1431, text: 'Best teachers I know: studying in co-working for exams during the weekends is truly worth it ☕' },
     { user: 'student_10', likes: 1105, text: 'Thanks to them I read the stack trace first and panic second 🧠' },
     { user: 'student_11', likes: 1690, text: '"I love Ms.Munara`s lessons. Her classes are structured amazingly! ALways a syllabus, psemester plan or presentation!' },
     { user: 'student_12', likes: 2500, text: 'Thank you for believing our code would compile one day. It does now. Mostly. 🚀' },
   ],
 
-  // Sticky notes in MEMORY.exe — TODO: paste real messages from classmates
+  // Sticky notes in MEMORY.exe — screenshots of funny messages (image only, no text)
   messages: [
-    { from: 'Student 1', text: 'Thank you for every “one more example” when nobody got it the first time.' },
-    { from: 'Student 2', text: 'I finally understand recursion. To understand it, see: this note.' },
-    { from: 'Student 3', text: 'Office hours > Stack Overflow. Faster answers, better jokes.' },
-    { from: 'Student 4', text: 'You made 9 a.m. lectures worth waking up for.' },
+    { img: 'assets/photos/funnote.jpg' },
+    { img: 'assets/photos/funnote1.jpg' },
+    { img: 'assets/photos/funnote3.jpg' },
+    { img: 'assets/photos/funnote4.jpg' },
+    { img: 'assets/photos/funnote5.jpg' },
+    { img: 'assets/java_quiz.jpg' },
   ],
 
   // Photos / videos in MEMORY.exe — TODO: drop files and update captions
   memories: [
-    { src: 'assets/photos/memory1.jpg', caption: 'First lecture — nobody knew what a pointer was' },
-    { src: 'assets/photos/memory2.jpg', caption: 'Live coding: it compiled on the first try (it did not)' },
-    { src: 'assets/photos/memory3.jpg', caption: 'Exam week, coffee level: critical' },
-    { src: 'assets/photos/memory4.jpg', caption: 'Group photo' },
-    { src: 'assets/photos/memory5.jpg', caption: 'The famous whiteboard' },
-    { src: 'assets/photos/memory6.mp4', caption: 'Video: our best moment' },
+    { src: 'assets/photos/first_exam.webm', caption: 'First exam' },
+    { src: 'assets/java_quiz.jpg', caption: 'Weekly Java quiz' },
+    { src: 'assets/photos/m_outfits.jpg', caption: 'Many outfits of the Vogue' },
+    { src: 'assets/photos/group_photo.jpg', caption: 'AIT Solutions ' },
   ],
 
   changelog: [

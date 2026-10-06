@@ -104,7 +104,7 @@ Reply with the numbers you want (and order); any can be swapped later with one l
 23. ★ **Changelog + Credits** — S. Changelog `v2024.1 First contact with students · v2025.1 Students started understanding Python · v2026.1 Final release 😭`, then movie-style rolling credits of student names, ending *"You didn't just teach us how to code. You taught us how to think."* Button `git commit -m "Thank you"` → full-screen confetti + **Happy Teacher's Day!**
 24. **Konami code easter egg** — XS. ↑↑↓↓←→←→BA switches the whole site to an 8-bit palette. Another 80s nod.
 
-**Default order (★):** 1 BIOS → 3 Dashboard → 4 Character Select → 7 Stack Overflow → 8 LeetCode → 9 Pull Request → 21 MEMORY.exe → 23 Credits.
+**Default order (★):** 1 BIOS → 4 Character Select → 7 Stack Overflow → 8 LeetCode → 9 Pull Request → 21 MEMORY.exe → 23 Credits.
 
 ---
 

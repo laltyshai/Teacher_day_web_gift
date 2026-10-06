@@ -107,7 +107,7 @@ Site.register({
       await Site.typeLines(log, lines.slice(0, 2), ctx, { charMs: 14 });
       // memory test count-up, the most 80s thing possible
       const mem = log.querySelector('.mem');
-      for (let k = 0; k <= 640; k += 32) { mem.textContent = k; await ctx.sleep(40); }
+      for (let k = 0; k <= 2048; k += 64) { mem.textContent = k; await ctx.sleep(40); }
       await Site.typeLines(log, lines.slice(2), ctx, { charMs: 10, lineMs: 160 });
       prompt.classList.add('show');
       done = true;
