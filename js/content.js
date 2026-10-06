@@ -19,13 +19,14 @@ window.CONTENT = {
       handle: '@munara',
       initials: 'MT',
       color: '#a371f7',
-      photo: 'assets/photos/m_pfp.jpg',       // TODO: drop a portrait with this name
-      subjects: ['Statistics', 'Discrete Math', 'Python'], // TODO: check which courses
+      photo: 'assets/photos/m_pfp.jpg',      
+      
+      subjects: ['Statistics', 'Discrete Math', 'Java',  'Computer Science', 'Research'], // TODO: check which courses
       rpg: {
-        cls: 'Statistics Sorceress',            // TODO
-        stats: [['Patience', 10],['Lessons` dtrucutre', 99], ['Debugging', 99], ['Humor', 99], ['Gambling', 2], ['Deadline mercy', 1]],
-        moves: ['p-value Punch (p < 0.05)', 'Proof by Induction Combo', 'Standard Deviation Dodge'],
-        ultimate: 'Curve Deployment',
+        cls: 'Java Paladin',       
+        stats: [['Patience', 10],['Lessons` strucutre', 99], ['Debugging', 99], ['Humor', 67], ['Lab difficuly', 9], ['Deadline mercy', 1]],
+        moves: ['Cache miss debuff', 'Recursive Refactor', 'Standard Deviation Dodge', 'Kernel proccess freeze'],
+        ultimate: 'Zero-latency CPU acceleration',
       },
       // short lines shown as comments/reviews "by" this teacher — TODO: replace with their real catchphrases
       says: {
@@ -41,13 +42,14 @@ window.CONTENT = {
       handle: '@emil',
       initials: 'EB',
       color: '#58a6ff',
-      photo: 'assets/photos/e_pfp.jpg',          // TODO: drop a portrait with this name
-      subjects: ['Java', 'Software Engineering', 'Computer Science'], // TODO: check which courses
+      photo: 'assets/photos/e_pfp.jpg',          
+      subjects: [ 'AIT Solutions', 'Data Structures', 'Algorithms', 'Python', 'Software dev Patterns',], // TODO: check which courses
+
       rpg: {
-        cls: 'Java Paladin',                    // TODO
+        cls: 'Algorithm Alchemist',                    // TODO
         stats: [['Patience', 2], ['Improvisation', 10], ['Debugging', 99], ['Humor', 99], ['Gambling', 10], ['Deadline mercy', 7]],
-        moves: ['NullPointer Parry', 'Recursive Refactor', 'Garbage Collector Sweep'],
-        ultimate: 'Office Hours Heal',
+        moves: ['NullPointer Parry', 'BigTech friends summoning', 'Garbage Collector Sweep', "Infinite Loop trap"],
+        ultimate: 'Sudden exam',
       },
       says: {
         review: 'LGTM 🚀  …you forgot a semicolon. Just kidding, it’s Python.',

@@ -91,7 +91,7 @@ Site.register({
       <div class="so panel">
         <div class="top">
           <span class="logo"><span class="stack"><i></i><i></i><i></i><i></i></span>stack<b>overflow</b></span>
-          <span class="search">🔍 how to thank professor without it getting too emotional</span>
+          <span class="search">🔍 how to thank professor without getting too emotional</span>
           <span class="me"><b>${me}</b> · <span class="rep">1</span> rep</span>
         </div>
         <div class="body">
