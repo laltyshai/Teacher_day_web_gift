@@ -93,6 +93,12 @@ window.CONTENT = {
     { src: 'assets/photos/group_photo.jpg', caption: 'AIT Solutions ' },
   ],
 
+  // "The best reels" window in MEMORY.exe (portrait videos, shown under the photos)
+  reels: [
+    { src: 'assets/photos/reel1.mp4', caption: 'Reel #1' },
+    { src: 'assets/photos/reel2.mp4', caption: 'Reel #2' },
+  ],
+
   changelog: [
     {
       v: 'v2026.10', title: 'Teacher’s Day Edition', latest: true,
