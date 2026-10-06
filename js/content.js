@@ -91,6 +91,7 @@ window.CONTENT = {
     { src: 'assets/java_quiz.jpg', caption: 'Weekly Java quiz' },
     { src: 'assets/photos/m_outfits.jpg', caption: 'Many outfits of the Vogue' },
     { src: 'assets/photos/group_photo.jpg', caption: 'AIT Solutions ' },
+    { src: 'assets/photos/local_jokes.jpg', caption: 'Local jokes. Don’t forget Jocify too' },
   ],
 
   // "The best reels" window in MEMORY.exe (portrait videos, shown under the photos)
